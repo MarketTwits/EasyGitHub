@@ -15,4 +15,4 @@ dependencyResolutionManagement {
 
 rootProject.name = "EasyGitHub"
 include(":app")
- 
+include(":core")
