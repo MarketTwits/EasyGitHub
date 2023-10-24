@@ -1,5 +1,6 @@
 [versions]
 #config
+
 minSdk = "21"
 targetSdk = "34"
 #plugins
@@ -10,11 +11,14 @@ androidGradlePlugin = "7.4.1"
 #Lifecycle
 lifecycle-ktx = "2.6.2"
 #Unit test
-junit-junit = "4.13.2"
+junit = "4.13.2"
+testng = "7.4.0"
 #UiTest
 androidx-espresso-core = "3.5.1"
 androidx-junit = "1.1.5"
 #Ui
+fragment = "1.6.1"
+coreSplashscreen = "1.1.0-alpha02"
 androidx-appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 google-material = "1.10.0"
@@ -22,6 +26,7 @@ navigation = "2.7.4"
 #Network
 retrofit = "2.9.0"
 okkhttp = "4.11.0"
+
 work-manager = "2.8.1"
 #DI
 hilt = "2.47"
@@ -33,8 +38,11 @@ jakewharton = "0.8.0"
 
 [libraries]
 #UI
+fragment = {group = "androidx.fragment", name = "fragment-ktx", version.ref = "fragment"}
 appcompat = { module = "androidx.appcompat:appcompat", version.ref = "androidx-appcompat" }
 constraintlayout = { module = "androidx.constraintlayout:constraintlayout", version.ref = "constraintlayout" }
+core-splashscreen = { module = "androidx.core:core-splashscreen", version.ref = "coreSplashscreen" }
+hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-plugin", version.ref = "hilt" }
 material = { module = "com.google.android.material:material", version.ref = "google-material" }
 navigation-fragment = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation"}
 navigation-ui-ktx = {group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation"}
@@ -47,7 +55,7 @@ hilt-android = {group = "com.google.dagger", name = "hilt-android", version.ref 
 #Test
 espresso-core = { module = "androidx.test.espresso:espresso-core", version.ref = "androidx-espresso-core" }
 ext-junit = { module = "androidx.test.ext:junit", version.ref = "androidx-junit" }
-junit = { module = "junit:junit", version.ref = "junit-junit" }
+junit = { module = "junit:junit", version.ref = "junit" }
 #Serialization
 kotlinx-serialization-core = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-core", version.ref = "kotlinx-serialization"}
 kotlinx-serialization-json = {group = "org.jetbrains.kotlinx", name = "kotlinx-serialization-json", version.ref = "kotlinx-serialization"}
@@ -57,7 +65,9 @@ retrofit = {group = "com.squareup.retrofit2", name = "retrofit", version.ref = "
 retrofit-converter = {group = "com.squareup.retrofit2", name = "converter-gson", version.ref = "retrofit"}
 okkhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okkhttp"}
 okkhttp-interceptor = {group = "com.squareup.okhttp3", name = "logging-interceptor", version.ref ="okkhttp"}
+testng = { module = "org.testng:testng", version.ref = "testng" }
 work-manager = {group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-manager"}
+junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version = "1.1.5" }
 
 [plugins]
 android-application = {id = "com.android.application", version.ref = "gradle"}
@@ -65,6 +75,7 @@ android-library = { id = "com.android.library", version.ref = "gradle" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}
+hilt = {id = "dagger.hilt.android.plugin", version.ref = "hilt"}
 kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref = "kotlin"}
 
 [bundles]
@@ -72,6 +83,8 @@ kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize",  version.ref 
 retrofit = ["retrofit", "retrofit-converter"]
 okkhttp = ["okkhttp", "okkhttp-interceptor"]
 network = ["retrofit", "retrofit-converter", "okkhttp", "okkhttp-interceptor"]
-retfrofit-serialization = ["kotlinx-serialization-core", "kotlinx-serialization-json", "jakewharton"]
+retfrofit-serialization = ["kotlinx-serialization-core",
+    "kotlinx-serialization-json", "jakewharton"]
+unitTest = ["junit", "testng"]
 
 

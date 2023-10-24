@@ -7,6 +7,7 @@ interface SharedPreferencesStorage {
     fun save(key: String, value: String)
     fun read(key: String, default: Boolean): Boolean
     fun read(key: String, default: String): String
+    fun delete(key: String)
     class Base(private val sharedPreferences: SharedPreferences) : SharedPreferencesStorage {
         override fun save(key: String, value: Boolean) {
             sharedPreferences.edit().putBoolean(key, value).apply()
@@ -21,5 +22,9 @@ interface SharedPreferencesStorage {
 
         override fun read(key: String, default: String): String =
             sharedPreferences.getString(key, default) ?: default
+
+        override fun delete(key: String) {
+            sharedPreferences.edit().remove(key).apply()
+        }
     }
 }

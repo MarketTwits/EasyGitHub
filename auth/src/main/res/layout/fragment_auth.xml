@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/App.Layout.Margin"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".presentation.AuthFragment">
+
+    <ImageView
+        android:id="@+id/iv_git_logo"
+        android:layout_width="@dimen/iv_logo_size"
+        android:layout_height="@dimen/iv_logo_size"
+        android:layout_marginTop="@dimen/vertical_logo_margin"
+        android:contentDescription="@string/logo_description"
+        android:src="@drawable/ic_github_circular"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.markettwits.auth.presentation.input_edit_text.TokenInputLayout
+        android:id="@+id/input_layout"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/vertical_logo_margin"
+        android:hint="@string/et_token"
+        app:errorEnabled="true"
+        android:freezesText="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/iv_git_logo">
+
+        <com.markettwits.auth.presentation.input_edit_text.TokenEditTextLayout
+            android:id="@+id/input_edit_text"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:freezesText="true"
+            android:imeOptions="actionDone"
+            android:inputType="text"
+            android:textAppearance="@style/TextAppearance.App.Text.Label" />
+
+    </com.markettwits.auth.presentation.input_edit_text.TokenInputLayout>
+
+
+    <com.markettwits.auth.presentation.submit.SubmitAuthButtonView
+        android:id="@+id/submit_button_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

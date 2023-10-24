@@ -9,6 +9,7 @@ import java.util.Objects
 interface Communication<T : Any> {
     interface Update<T : Any> {
         fun map(source: T)
+        fun map( source : () -> T ) = Unit
     }
 
     interface Observe<T : Any> {
@@ -54,6 +55,7 @@ interface Communication<T : Any> {
     class Empty<T : Any> : Mutable<T> {
         override fun map(data: T) = Unit
         override fun observe(owner: LifecycleOwner, observer: Observer<T>) = Unit
+        override fun map(source: () -> T) { source.invoke() }
         override fun fetch(): T = Any() as T
     }
 }

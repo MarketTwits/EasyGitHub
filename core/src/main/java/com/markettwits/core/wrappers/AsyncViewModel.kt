@@ -13,11 +13,11 @@ interface AsyncViewModel<T : Any> {
         io: suspend () -> T,
         ui: (T) -> Unit
     )
+     fun clear()
     abstract class Abstract<T : Any>(
         private val runAsync: RunAsync
     ) : AsyncViewModel<T> {
         private val scope = CoroutineScope(SupervisorJob() + Dispatchers.Main)
-        protected fun clearAsync() = runAsync.clear()
 
         override fun <T : Any> handleAsync(
             io: suspend () -> T,
@@ -30,6 +30,11 @@ interface AsyncViewModel<T : Any> {
             io: suspend () -> T,
             ui: (T) -> Unit
         ) = runAsync.runAsync(io, ui)
+
+        override fun clear() {
+            runAsync.clear()
+        }
     }
     class Base<T : Any>(private val runAsync: RunAsync) : Abstract<T>(runAsync)
+
 }

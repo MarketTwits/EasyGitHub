@@ -16,3 +16,5 @@ dependencyResolutionManagement {
 rootProject.name = "EasyGitHub"
 include(":app")
 include(":core")
+include(":auth")
+include(":cloud-datasoruce")

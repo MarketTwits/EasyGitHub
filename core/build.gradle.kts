@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -6,11 +5,10 @@ plugins {
 
 android {
     namespace = "com.markettwits.core"
-    compileSdk = 33
+    compileSdk = libs.versions.targetSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
-
+        minSdk = libs.versions.minSdk.get().toInt()
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
     }
@@ -31,14 +29,15 @@ android {
     kotlinOptions {
         jvmTarget = "1.8"
     }
+    viewBinding.isEnabled = true
 }
 
 dependencies {
-
-    implementation(libs.core.ktx)
-    implementation(libs.appcompat)
-    implementation(libs.material)
-    testImplementation(libs.junit)
-    androidTestImplementation(libs.ext.junit)
-    androidTestImplementation(libs.espresso.core)
+    api(libs.fragment)
+    api(libs.core.ktx)
+    api(libs.appcompat)
+    api(libs.constraintlayout)
+    api(libs.material)
+    testApi(libs.bundles.unitTest)
+    api(libs.core.splashscreen)
 }
