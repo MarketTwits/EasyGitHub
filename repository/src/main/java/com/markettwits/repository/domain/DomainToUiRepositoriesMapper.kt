@@ -4,11 +4,11 @@ import com.markettwits.core.R
 import com.markettwits.repository.presentation.list.RepositoriesUiState
 
 interface DomainToUiRepositoriesMapper {
-    fun map(name : String,description : String, language: String) : RepositoriesUiState
+    fun map(name : String,description : String, language: String, languageColor: String) : RepositoriesUiState
     fun map(code : Int, message : Int) : RepositoriesUiState
     class Base : DomainToUiRepositoriesMapper {
-        override fun map(name: String, description: String, language: String) : RepositoriesUiState {
-            return RepositoriesUiState.Success(name, description, language)
+        override fun map(name: String, description: String, language: String, languageColor: String) : RepositoriesUiState {
+            return RepositoriesUiState.Success(name, description, language, languageColor)
         }
 
         override fun map(code: Int, message : Int ) : RepositoriesUiState {

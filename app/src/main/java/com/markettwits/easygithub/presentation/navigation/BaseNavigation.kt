@@ -25,6 +25,4 @@ class BaseNavigation @Inject constructor() : Navigation {
     override fun navigateToAuth() {
         controller.navigate(R.id.to_AuthFragment_with_anim)
     }
-
-
 }

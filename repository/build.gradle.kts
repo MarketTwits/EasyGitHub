@@ -8,10 +8,10 @@ plugins {
 
 android {
     namespace = "com.markettwits.repository"
-    compileSdk = 33
+    compileSdk = libs.versions.targetSdk.get().toInt()
 
     defaultConfig {
-        minSdk = 21
+        minSdk = libs.versions.minSdk.get().toInt()
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         consumerProguardFiles("consumer-rules.pro")
@@ -31,7 +31,7 @@ android {
         targetCompatibility = JavaVersion.VERSION_1_8
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = libs.versions.jvmTarget.get()
     }
     viewBinding.enable = true
 }
@@ -40,6 +40,9 @@ dependencies {
     implementation(project(":core"))
     implementation(project(":cloud-datasoruce"))
     implementation(project(":auth"))
+    implementation(libs.junit.ktx)
+    testImplementation("org.testng:testng:6.9.6")
+    androidTestImplementation("org.testng:testng:6.9.6")
     ksp(libs.hilt)
     implementation(libs.hilt.android)
 }

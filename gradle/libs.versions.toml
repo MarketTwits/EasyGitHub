@@ -3,6 +3,7 @@
 
 minSdk = "21"
 targetSdk = "34"
+jvmTarget = "1.8"
 #plugins
 core-ktx = "1.12.0"
 kotlin = "1.9.10"
