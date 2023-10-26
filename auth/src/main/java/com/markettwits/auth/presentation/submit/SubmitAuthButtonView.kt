@@ -3,7 +3,7 @@ package com.markettwits.auth.presentation.submit
 import android.content.Context
 import android.util.AttributeSet
 
-class SubmitAuthButtonView @JvmOverloads constructor(
+internal class SubmitAuthButtonView @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : SubmitAuthButtonViewBase(context, attrs) {
 

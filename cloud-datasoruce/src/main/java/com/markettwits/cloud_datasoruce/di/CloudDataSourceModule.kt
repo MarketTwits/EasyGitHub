@@ -3,28 +3,48 @@ package com.markettwits.cloud_datasoruce.di
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
 import com.markettwits.cloud_datasoruce.core.HandleNetworkResult
 import com.markettwits.cloud_datasoruce.core.HandleRequestCode
+import com.markettwits.cloud_datasoruce.core.OkkHttpWrapper
 import com.markettwits.cloud_datasoruce.core.RetrofitFactory
 import com.markettwits.cloud_datasoruce.network.GitHubApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import javax.inject.Qualifier
+import kotlinx.serialization.json.Json
+import okhttp3.OkHttpClient
 
 @Module
 @InstallIn(SingletonComponent::class)
 internal class CloudDataSourceModule {
     @Provides
-    fun provideGitHubService(): GitHubApiService {
+    fun provideGitHubService(client: OkHttpClient, json: Json): GitHubApiService {
         return RetrofitFactory
-            .Base("https://api.github.com/")
+            .Base("https://api.github.com/", client, json)
             .create(GitHubApiService::class.java)
     }
+
 
     @Provides
     fun provideHandleAsync(): HandleNetworkResult {
         return HandleNetworkResult.Base(HandleRequestCode.Base())
     }
+
+    @Provides
+     fun provideWithOutTokenClient(): OkHttpClient {
+        return OkkHttpWrapper.WithOutToken().client()
+    }
+
+    private fun provideWitTokenClient(value: String): OkHttpClient {
+        return OkkHttpWrapper.Base(value).client()
+    }
+
+    @Provides
+    fun provideJson(): Json {
+        return Json {
+            ignoreUnknownKeys = true
+        }
+    }
+
     @CloudGitHubDataSource
     @Provides
     fun provideCloudDataSource(
@@ -34,7 +54,3 @@ internal class CloudDataSourceModule {
         return GitHubCloudDataSource.Base(service, async)
     }
 }
-
-@Qualifier
-@Retention(AnnotationRetention.BINARY)
-annotation class CloudGitHubDataSource

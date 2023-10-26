@@ -9,7 +9,7 @@ import com.markettwits.auth.presentation.AuthFragment
 import com.markettwits.auth.presentation.AuthViewModel
 import com.markettwits.core.ui.TextChanged
 
-class TokenEditTextLayout @JvmOverloads constructor(
+internal class TokenEditTextLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : TextInputEditText(context, attrs) {
     private val root by lazy { findFragment<AuthFragment>() }

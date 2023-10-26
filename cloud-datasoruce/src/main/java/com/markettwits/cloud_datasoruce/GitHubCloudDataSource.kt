@@ -15,11 +15,13 @@ interface GitHubCloudDataSource {
     interface Repository : GitHubCloudDataSource {
         interface Single : Repository {
             suspend fun fetchRepository(
+                token : String,
                 ownerName: String,
                 repositoryName: String
             ): NetworkResult<RepositoryCloud>
 
             suspend fun fetchRepositoryReadme(
+                token : String,
                 ownerName: String,
                 repositoryName: String,
                 branch: String
@@ -27,12 +29,11 @@ interface GitHubCloudDataSource {
         }
 
         interface RepositoryList : Repository {
-            suspend fun fetchRepositories(): NetworkResult<List<RepositoryCloud>>
+            suspend fun fetchRepositories(token : String): NetworkResult<List<RepositoryCloud>>
         }
 
         interface Mutable : Single, RepositoryList
     }
-
     interface Mutable : Auth, Repository.Mutable, GitHubCloudDataSource
     class Base @Inject constructor(
         private val service: GitHubApiService,
@@ -43,21 +44,22 @@ interface GitHubCloudDataSource {
                 service.auth("$HEADER_VALUE $token")
             }
 
-        override suspend fun fetchRepository(ownerName: String, repositoryName: String) =
+        override suspend fun fetchRepository(token : String, ownerName: String, repositoryName: String) =
             handleAsync.tryRequest {
-                service.fetchRepository(ownerName, repositoryName)
+                service.fetchRepository("$HEADER_VALUE $token",ownerName, repositoryName)
             }
 
         override suspend fun fetchRepositoryReadme(
+            token : String,
             ownerName: String,
             repositoryName: String,
             branch: String
         ) = handleAsync.tryRequest {
-            service.fetchReadme(ownerName, repositoryName)
+            service.fetchReadme("$HEADER_VALUE $token", ownerName, repositoryName)
         }
 
-        override suspend fun fetchRepositories() = handleAsync.tryRequest {
-            service.fetchRepositories()
+        override suspend fun fetchRepositories(token: String) = handleAsync.tryRequest {
+            service.fetchRepositories("$HEADER_VALUE $token")
         }
     }
     private companion object{

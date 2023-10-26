@@ -17,7 +17,7 @@ import com.markettwits.auth.presentation.AuthViewModel
 import com.markettwits.auth.presentation.validation.TokenValidationState
 import com.markettwits.auth.presentation.validation.TokenValidationStateHandle
 
-abstract class SubmitAuthButtonViewBase @JvmOverloads constructor(
+internal abstract class SubmitAuthButtonViewBase @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : ConstraintLayout(context, attrs), TokenValidationStateHandle {
     protected val binding =

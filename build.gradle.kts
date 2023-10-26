@@ -9,5 +9,6 @@ plugins {
 buildscript {
     dependencies {
         classpath(libs.hilt.android.gradle.plugin)
+        classpath("androidx.navigation:navigation-safe-args-gradle-plugin:${libs.navigation.ui.ktx.get().version}")
     }
 }

@@ -1,5 +1,6 @@
 package com.markettwits.auth.presentation
 
+import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -8,6 +9,7 @@ import com.markettwits.auth.presentation.communication.AuthCommunication
 import com.markettwits.auth.presentation.communication.ValidationCommunication
 import com.markettwits.auth.presentation.validation.HandleValidationToken
 import com.markettwits.auth.presentation.validation.TokenValidationState
+import com.markettwits.core.navigation.Navigation
 import com.markettwits.core.wrappers.AsyncViewModel
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
@@ -19,15 +21,22 @@ interface AuthViewModel : AuthCommunication.Observe, ValidationCommunication.Obs
     fun trySignIn(token: String)
     fun provide(state: AuthUiState)
     fun validate(value: String)
+    fun navigateTo()
 
     @HiltViewModel
     class Base @Inject constructor(
-        private val repository: AuthRepository,
+        private val repository: AuthRepository.Auth,
         private val async: AsyncViewModel<AuthUiState>,
         private val handleValidationToken: HandleValidationToken,
         private val tokenCommunication: ValidationCommunication,
-        private val communication: AuthCommunication
+        private val communication: AuthCommunication,
+        private val navigation: Navigation
     ) : AuthViewModel, ViewModel() {
+
+        init {
+            Log.d("mt055", navigation.hashCode().toString())
+        }
+
         override fun dismiss() {
             communication.map(AuthUiState.Empty)
         }
@@ -55,6 +64,10 @@ interface AuthViewModel : AuthCommunication.Observe, ValidationCommunication.Obs
 
         override fun validate(value: String) {
             tokenCommunication.map(handleValidationToken.handle(value))
+        }
+
+        override fun navigateTo() {
+            navigation.navigateToRepositoryList()
         }
 
         override fun observeValidation(

@@ -3,6 +3,7 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.ksp)
     id("dagger.hilt.android.plugin")
+    id("androidx.navigation.safeargs.kotlin")
 }
 
 android {
@@ -36,7 +37,10 @@ android {
     }
 }
 dependencies {
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui.ktx)
     ksp(libs.hilt)
     implementation(libs.hilt.android)
     implementation(project(":auth"))
+    implementation(project(":repository"))
 }

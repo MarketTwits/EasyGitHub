@@ -12,7 +12,7 @@ import com.markettwits.core.R
 import dagger.hilt.android.AndroidEntryPoint
 
 
-class ErrorDialogFragment(
+internal class ErrorDialogFragment(
     private val message: Int,
     private val viewModel: AuthViewModel
 ) :

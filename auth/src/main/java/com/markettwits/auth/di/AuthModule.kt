@@ -9,6 +9,7 @@ import com.markettwits.auth.presentation.AuthUiState
 import com.markettwits.auth.presentation.validation.HandleValidationToken
 import com.markettwits.auth.presentation.communication.ValidationCommunication
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
+import com.markettwits.cloud_datasoruce.core.AuthDataSource
 import com.markettwits.cloud_datasoruce.di.CloudGitHubDataSource
 import com.markettwits.core.storage.SharedPreferencesStorage
 import com.markettwits.core.wrappers.AsyncViewModel
@@ -23,23 +24,58 @@ import dagger.hilt.android.qualifiers.ApplicationContext
 @InstallIn(ViewModelComponent::class)
 @Module
 class AuthModule {
+    @Provides
+    fun provideAuthService(
+        @SecureSharedPref authCache: SharedPreferencesStorage,
+        @CloudGitHubDataSource cloudDataSource: GitHubCloudDataSource
+    ): AuthDataSource {
+        return provideRepositoryAuth(authCache, cloudDataSource)
+    }
 
     @Provides
     fun provideRepository(
-        @ApplicationContext context: Context,
+        @SecureSharedPref authCache: SharedPreferencesStorage,
         @CloudGitHubDataSource cloudDataSource: GitHubCloudDataSource
     ): AuthRepository {
         return AuthRepository.Base(
-            SharedPreferencesStorage.Base(
-                SecureSharedPreferences.Base(context, "gb_01_stp").provideSecureSharedPreference()
-            ),
+            authCache,
             cloudDataSource as GitHubCloudDataSource.Auth,
             CloudToDomainAuthMapper()
         )
     }
+    @Provides
+    @AuthQualifier
+    fun provideAuthDataSource(@SecureSharedPref cache : SharedPreferencesStorage) : AuthDataSource{
+        return AuthRepository.BaseLocal(cache)
+    }
+
 
     @Provides
-    fun provideValidationCommunication() : ValidationCommunication {
+    @SecureSharedPref
+    fun provideAuthCache(@ApplicationContext context: Context): SharedPreferencesStorage {
+        return SharedPreferencesStorage.Base(
+            SecureSharedPreferences.Base(context, "gb_01_stp").provideSecureSharedPreference()
+        )
+    }
+
+    @Provides
+    fun provideRepositoryAuth(
+        @SecureSharedPref authCache: SharedPreferencesStorage,
+        @CloudGitHubDataSource cloudDataSource: GitHubCloudDataSource
+    ): AuthRepository.Auth {
+        return provideRepository(authCache, cloudDataSource) as AuthRepository.Auth
+    }
+
+    @Provides
+    fun provideRepositoryCheck(
+        @SecureSharedPref authCache: SharedPreferencesStorage,
+        @CloudGitHubDataSource cloudDataSource: GitHubCloudDataSource
+    ): AuthRepository.Check {
+        return provideRepository(authCache, cloudDataSource) as AuthRepository.Check
+    }
+
+    @Provides
+    fun provideValidationCommunication(): ValidationCommunication {
         return ValidationCommunication.Base()
     }
 
@@ -52,8 +88,9 @@ class AuthModule {
     fun provideAsyncViewModel(): AsyncViewModel<AuthUiState> {
         return AsyncViewModel.Base(RunAsync.Base(DispatchersList.Base()))
     }
+
     @Provides
-    fun provideValidationToken() : HandleValidationToken {
+    fun provideValidationToken(): HandleValidationToken {
         return HandleValidationToken.Base()
     }
 

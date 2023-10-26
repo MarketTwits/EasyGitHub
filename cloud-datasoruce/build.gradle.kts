@@ -37,6 +37,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
+    testImplementation("org.testng:testng:6.9.6")
     ksp(libs.hilt)
     implementation(libs.hilt.android)
     implementation(libs.bundles.network)

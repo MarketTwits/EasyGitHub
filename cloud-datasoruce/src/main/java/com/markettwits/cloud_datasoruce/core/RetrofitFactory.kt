@@ -9,24 +9,20 @@ import okhttp3.OkHttpClient
 import retrofit2.Retrofit
 import javax.inject.Inject
 
-internal interface RetrofitFactory {
-    fun <T : Any> create (service : Class<T>) : T
-    class Base(
-         private val baseUrl : String,
-       // private val client: OkHttpClient
-       // @Inject private val contentType : MediaType,
-        //@Inject private val json: Json
+interface RetrofitFactory {
+    fun <T : Any> create(service: Class<T>): T
+    class Base @Inject constructor(
+        private val baseUrl: String,
+        private val client: OkHttpClient,
+        private val json: Json
     ) : RetrofitFactory {
-        val client = OkkHttpWrapper.Base().client()
-        val json = Json{
-            ignoreUnknownKeys = true
-        }
+
         override fun <T : Any> create(service: Class<T>) = Retrofit.Builder()
-                .baseUrl(baseUrl)
+            .baseUrl(baseUrl)
             .client(client)
-                .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
-                .build()
-                .create(service)
+            .addConverterFactory(json.asConverterFactory("application/json".toMediaType()))
+            .build()
+            .create(service)
 
     }
 }

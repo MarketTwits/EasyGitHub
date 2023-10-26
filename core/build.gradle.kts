@@ -38,6 +38,8 @@ dependencies {
     api(libs.appcompat)
     api(libs.constraintlayout)
     api(libs.material)
+    api(libs.navigation.fragment)
+    api(libs.navigation.ui.ktx)
     testApi(libs.bundles.unitTest)
     api(libs.core.splashscreen)
 }

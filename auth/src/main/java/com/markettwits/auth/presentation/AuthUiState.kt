@@ -22,7 +22,6 @@ sealed interface AuthUiState {
         override fun handle(map: AuthUiStateHandle.Response) {
             map.error(message)
         }
-
     }
 }
 interface AuthUiStateHandle{

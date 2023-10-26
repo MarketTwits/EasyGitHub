@@ -13,7 +13,7 @@ import com.markettwits.auth.databinding.FragmentAuthBinding
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class AuthFragment : Fragment(R.layout.fragment_auth), AuthUiStateHandle.Response {
+internal class AuthFragment : Fragment(R.layout.fragment_auth), AuthUiStateHandle.Response {
     private lateinit var binding: FragmentAuthBinding
     private val viewModel by viewModels<AuthViewModel.Base>()
     override fun onCreateView(
@@ -33,13 +33,11 @@ class AuthFragment : Fragment(R.layout.fragment_auth), AuthUiStateHandle.Respons
         }
         binding.submitButtonLayout.setButtonClickListener {
             viewModel.trySignIn(binding.inputEditText.text.toString())
-            val a = binding.inputEditText.text.toString()
-            val b = 2
         }
     }
 
     override fun success() {
-        Toast.makeText(requireContext(), "Success", Toast.LENGTH_SHORT).show()
+        viewModel.navigateTo()
     }
 
     override fun error(message: Int) {

@@ -20,18 +20,21 @@ interface GitHubApiService {
 
     @GET("/user/repos")
     suspend fun fetchRepositories(
+        @Header("Authorization") token : String,
         @Query("sort") sort: String = SORT_FILTER,
         @Query("per_page") amount: Int = REPOSITORIES_AMOUNT
     ): List<RepositoryCloud>
 
     @GET("/repos/{owner}/{repo}")
     suspend fun fetchRepository(
+        @Header("Authorization") token : String,
         @Path("owner") ownerName: String,
         @Path("repo") repoName: String
     ): RepositoryCloud
 
     @GET("/repos/{owner}/{repo}/readme")
     suspend fun fetchReadme(
+        @Header("Authorization") token : String,
         @Path("owner") ownerName: String,
         @Path("repo") repoName: String
     ) : RepositoryCloud.Readme

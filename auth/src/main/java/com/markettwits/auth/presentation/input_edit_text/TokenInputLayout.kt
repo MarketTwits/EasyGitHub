@@ -10,7 +10,7 @@ import com.markettwits.auth.presentation.AuthFragment
 import com.markettwits.auth.presentation.AuthViewModel
 import com.markettwits.auth.presentation.validation.TokenValidationStateHandle
 
-class TokenInputLayout @JvmOverloads constructor(
+internal class TokenInputLayout @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null
 ) : TextInputLayout(context, attrs), TokenValidationStateHandle {
 
