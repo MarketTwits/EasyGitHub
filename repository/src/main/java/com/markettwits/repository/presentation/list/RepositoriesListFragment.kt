@@ -6,6 +6,8 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import androidx.recyclerview.widget.DividerItemDecoration
+import com.markettwits.repository.R
 import com.markettwits.repository.databinding.FragmentRepositoriesListBinding
 import com.markettwits.repository.presentation.list.recyclerView.ItemAction
 import com.markettwits.repository.presentation.list.recyclerView.RepositoriesAdapter
@@ -37,11 +39,12 @@ class RepositoriesListFragment : Fragment(com.markettwits.repository.R.layout.fr
                 viewModel.repositories()
             }
         })
+        binding.rvRepositoriesList.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         binding.rvRepositoriesList.adapter = adapter
         viewModel.observe(viewLifecycleOwner){
             adapter.submitList(it)
         }
-        binding.toolbar.setUpToolbar("Repositories"){
+        binding.toolbar.setUpToolbar(getString(com.markettwits.core.R.string.repositories)){
             viewModel.singOut()
         }
     }

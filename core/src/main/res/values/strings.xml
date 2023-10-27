@@ -16,6 +16,7 @@
     <string name="tv_stars_title">stars</string>
     <string name="tv_license_label">License</string>
 
+    <string name="repositories">Repositories</string>
     <string name="logo_description">GitHub logo</string>
     <string name="link_icon">link icon</string>
     <string name="license_icon">license icon</string>

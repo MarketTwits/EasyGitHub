@@ -12,7 +12,6 @@ import com.markettwits.repository.presentation.list.RepositoriesUiState
 class RepositoriesAdapter(
     private val onItemClick: ItemAction
 ) : ListAdapter<RepositoriesUiState, BaseRepositoriesViewHolder>(RepoDiffUtilCallback()) {
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRepositoriesViewHolder {
         val base = RepositoryElementBinding
             .inflate(LayoutInflater.from(parent.context), parent, false)

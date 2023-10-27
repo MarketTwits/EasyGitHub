@@ -20,5 +20,10 @@ sealed interface RepositoryDomainItem {
             return mapper.map(code, message)
         }
     }
+    data object Empty : RepositoryDomainItem{
+        override fun map(mapper: DomainToUiRepositoriesMapper): RepositoriesUiState {
+            return mapper.map()
+        }
+    }
 
 }

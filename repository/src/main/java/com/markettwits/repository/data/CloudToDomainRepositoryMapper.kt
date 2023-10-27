@@ -8,6 +8,9 @@ import org.intellij.lang.annotations.Language
 class CloudToDomainRepositoryMapper(private val language: LanguageColorMapper) :
     NetworkResult.Mapper<List<RepositoryCloud>, List<RepositoryDomainItem>> {
     override fun map(item: List<RepositoryCloud>): List<RepositoryDomainItem> {
+        if (item.isEmpty()){
+            return listOf(RepositoryDomainItem.Empty)
+        }
         return item.map {
             RepositoryDomainItem.Success(
                 it.name,

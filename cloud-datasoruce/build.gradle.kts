@@ -36,6 +36,11 @@ android {
 }
 
 dependencies {
+    val work_version = "2.8.1"
+    // Kotlin + coroutines
+    api("androidx.work:work-runtime-ktx:$work_version")
+    ksp("androidx.hilt:hilt-compiler:1.1.0-alpha01")
+    api(libs.hilt.work)
     implementation(project(":core"))
     testImplementation("org.testng:testng:6.9.6")
     ksp(libs.hilt)

@@ -3,7 +3,7 @@ package com.markettwits.cloud_datasoruce.core
 import javax.inject.Qualifier
 
 @Qualifier
-@Retention(AnnotationRetention.RUNTIME)
+@Retention(AnnotationRetention.BINARY)
 annotation class AuthDataSourceQualifier
 
 interface AuthDataSource {

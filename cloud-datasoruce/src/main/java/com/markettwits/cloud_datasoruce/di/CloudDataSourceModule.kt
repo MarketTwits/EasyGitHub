@@ -1,5 +1,7 @@
 package com.markettwits.cloud_datasoruce.di
 
+import android.content.Context
+import androidx.work.WorkManager
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
 import com.markettwits.cloud_datasoruce.core.HandleNetworkResult
 import com.markettwits.cloud_datasoruce.core.HandleRequestCode
@@ -9,6 +11,7 @@ import com.markettwits.cloud_datasoruce.network.GitHubApiService
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
 import kotlinx.serialization.json.Json
 import okhttp3.OkHttpClient

@@ -4,10 +4,11 @@ import android.util.Log
 import org.intellij.lang.annotations.Language
 import org.json.JSONException
 import org.json.JSONObject
+import javax.inject.Inject
 
 interface LanguageColorMapper {
     fun map(language: String) : String
-    class Base(private val assetsDataSource: AssetsDataSource) : LanguageColorMapper{
+    class Base @Inject constructor(private val assetsDataSource: AssetsDataSource) : LanguageColorMapper{
         override fun map(language: String): String {
             val colorsString: String = assetsDataSource.read()
             val colors = try {

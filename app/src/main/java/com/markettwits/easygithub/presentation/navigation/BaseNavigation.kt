@@ -1,5 +1,6 @@
 package com.markettwits.easygithub.presentation.navigation
 
+import android.widget.Toast
 import androidx.annotation.IntegerRes
 import androidx.annotation.NavigationRes
 import androidx.navigation.NavController

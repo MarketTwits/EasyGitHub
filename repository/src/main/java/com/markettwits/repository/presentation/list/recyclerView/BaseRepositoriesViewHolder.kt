@@ -22,12 +22,16 @@ abstract class BaseRepositoriesViewHolder(view: View) :
         ) {
             with(binding) {
                 rvElementRepoName.text = name
-                rvElementRepoLanguage.text = language
                 rvElementRepoDescription.text = description
                 rvElementRepoLanguage.let {
                     it.text = language
                     it.setTextColor(Color.parseColor(languageColor))
                 }
+                if (description.isEmpty())
+                    rvElementRepoDescription.visibility = View.GONE
+                else
+                    rvElementRepoDescription.visibility = View.VISIBLE
+                    rvElementRepoDescription.text = description
             }
 
         }

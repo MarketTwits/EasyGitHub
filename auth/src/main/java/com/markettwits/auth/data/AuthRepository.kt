@@ -4,6 +4,7 @@ import com.markettwits.auth.presentation.AuthUiState
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
 import com.markettwits.cloud_datasoruce.core.AuthDataSource
 import com.markettwits.core.storage.SharedPreferencesStorage
+import javax.inject.Inject
 
 interface AuthRepository : AuthDataSource {
 
@@ -39,7 +40,7 @@ interface AuthRepository : AuthDataSource {
             }
         }
     }
-    abstract class AbstractLocal(private val cache: SharedPreferencesStorage) : AuthDataSource{
+    abstract class AbstractLocal (private val cache: SharedPreferencesStorage) : AuthDataSource{
         override suspend fun logOut() {
             cache.delete(AUTH_VALUE)
         }
@@ -50,7 +51,7 @@ interface AuthRepository : AuthDataSource {
         override suspend fun value() =
             cache.read(AUTH_VALUE, AUTH_DEFAULT_VALUE)
     }
-    class BaseLocal(private val cache: SharedPreferencesStorage) : AbstractLocal(cache)
+    class BaseLocal (private val cache: SharedPreferencesStorage) : AbstractLocal(cache)
 
     companion object{
         private const val AUTH_VALUE = "USER_TOKEN"

@@ -14,7 +14,7 @@
         android:layout_marginEnd="@dimen/rv_element_horizontal_margin"
         android:paddingVertical="6dp"
         android:textAppearance="@style/TextAppearance.App.Text.Label"
-        android:textColor="?attr/colorPrimary"
+        android:textColor="@color/blue"
         app:layout_constraintEnd_toStartOf="@+id/rv_element_repo_language"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,7 +36,6 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.App.Text"
-
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rv_element_repo_name" />

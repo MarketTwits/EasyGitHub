@@ -4,6 +4,8 @@ import android.content.Context
 import com.markettwits.auth.data.AuthRepository
 import com.markettwits.auth.data.CloudToDomainAuthMapper
 import com.markettwits.auth.data.cache.SecureSharedPreferences
+import com.markettwits.auth.di.AuthModule_ProvideRepositoryAuthFactory.provideRepositoryAuth
+import com.markettwits.auth.di.AuthModule_ProvideRepositoryFactory.provideRepository
 import com.markettwits.auth.presentation.communication.AuthCommunication
 import com.markettwits.auth.presentation.AuthUiState
 import com.markettwits.auth.presentation.validation.HandleValidationToken
@@ -20,6 +22,8 @@ import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.android.components.ViewModelComponent
 import dagger.hilt.android.qualifiers.ApplicationContext
+import dagger.hilt.components.SingletonComponent
+import javax.inject.Singleton
 
 @InstallIn(ViewModelComponent::class)
 @Module
@@ -43,21 +47,6 @@ class AuthModule {
             CloudToDomainAuthMapper()
         )
     }
-    @Provides
-    @AuthQualifier
-    fun provideAuthDataSource(@SecureSharedPref cache : SharedPreferencesStorage) : AuthDataSource{
-        return AuthRepository.BaseLocal(cache)
-    }
-
-
-    @Provides
-    @SecureSharedPref
-    fun provideAuthCache(@ApplicationContext context: Context): SharedPreferencesStorage {
-        return SharedPreferencesStorage.Base(
-            SecureSharedPreferences.Base(context, "gb_01_stp").provideSecureSharedPreference()
-        )
-    }
-
     @Provides
     fun provideRepositoryAuth(
         @SecureSharedPref authCache: SharedPreferencesStorage,
@@ -94,4 +83,21 @@ class AuthModule {
         return HandleValidationToken.Base()
     }
 
+}
+@Module
+@InstallIn(SingletonComponent::class)
+class SingleAuthModule{
+    @Singleton
+    @Provides
+    @AuthQualifier
+    fun provideAuthDataSource(@SecureSharedPref cache : SharedPreferencesStorage) : AuthDataSource{
+        return AuthRepository.BaseLocal(cache)
+    }
+    @Provides
+    @SecureSharedPref
+    fun provideAuthCache(@ApplicationContext context: Context): SharedPreferencesStorage {
+        return SharedPreferencesStorage.Base(
+            SecureSharedPreferences.Base(context, "gb_01_stp").provideSecureSharedPreference()
+        )
+    }
 }
