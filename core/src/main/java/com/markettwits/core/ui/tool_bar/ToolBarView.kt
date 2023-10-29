@@ -32,7 +32,7 @@ class ToolBarView @JvmOverloads constructor(
             }
         }
     }
-    fun setUpToolbar(title: String, signOut: () -> Unit, back : () -> Unit) {
+    fun setUpToolbar(title : String, signOut: () -> Unit, back: (() -> Unit)) {
         binding.run {
             root.title = title
             root.setTitleTextAppearance(

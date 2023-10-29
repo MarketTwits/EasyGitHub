@@ -5,13 +5,14 @@ sealed interface RepositoriesUiState {
 
     class Success(
         private val name: String,
+        private val owner : String,
         private val description: String,
         private val language: String,
         private val languageColor: String
 
     ) : RepositoriesUiState {
         override fun show(show: RepositoriesUiStateHandle) {
-            show.success(name, description, language, languageColor)
+            show.success(name, owner,description, language, languageColor)
         }
     }
 
@@ -31,7 +32,7 @@ sealed interface RepositoriesUiState {
 
 interface RepositoriesUiStateHandle {
 
-    fun success(name: String, description: String, language: String,languageColor: String) = Unit
+    fun success(name: String, owner : String, description: String, language: String,languageColor: String) = Unit
 
     fun loading() = Unit
 

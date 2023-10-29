@@ -15,4 +15,6 @@ interface Navigation {
     fun init(@NavigationRes navGraph : Int, startDestination : Int, navHostController: NavController)
     fun navigateToRepositoryList()
     fun navigateToAuth()
+    fun navigateToDetail(owner : String, name : String)
+    fun back()
 }

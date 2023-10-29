@@ -14,6 +14,7 @@ import javax.inject.Inject
 interface RepositoriesListViewModel {
     fun repositories()
     fun singOut()
+    fun toDetail(owner : String, name : String)
 
     @HiltViewModel
     class Base @Inject constructor(
@@ -38,6 +39,10 @@ interface RepositoriesListViewModel {
             async.handleAsync({
                 authRepository.logOut()
             }){}
+        }
+
+        override fun toDetail(owner: String, name: String) {
+            navigation.navigateToDetail(owner, name)
         }
 
         override fun observe(owner: LifecycleOwner, observer: Observer<List<RepositoriesUiState>>) {

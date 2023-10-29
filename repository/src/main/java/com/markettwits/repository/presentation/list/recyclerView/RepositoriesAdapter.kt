@@ -39,6 +39,6 @@ class RepositoriesAdapter(
     }
 }
 interface ItemAction{
-    fun onClick(item : RepositoriesUiState)
+    fun onClick(name : String, owner : String)
     fun retry()
 }

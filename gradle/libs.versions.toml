@@ -24,6 +24,7 @@ androidx-appcompat = "1.6.1"
 constraintlayout = "2.1.4"
 google-material = "1.10.0"
 navigation = "2.7.4"
+markwon = "4.6.2"
 #Network
 retrofit = "2.9.0"
 okkhttp = "4.11.0"
@@ -47,6 +48,7 @@ hilt-android-gradle-plugin = { module = "com.google.dagger:hilt-android-gradle-p
 material = { module = "com.google.android.material:material", version.ref = "google-material" }
 navigation-fragment = {group = "androidx.navigation", name = "navigation-fragment-ktx", version.ref = "navigation"}
 navigation-ui-ktx = {group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigation"}
+markwon = {group = "io.noties.markwon", name = "core", version.ref = "markwon"}
 #Lifecycle
 android-lifecycle-ktx = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "lifecycle-ktx" }
 #Compile
@@ -70,6 +72,7 @@ testng = { module = "org.testng:testng", version.ref = "testng" }
 work-manager = {group = "androidx.work", name = "work-runtime-ktx", version.ref = "work-manager"}
 junit-ktx = { group = "androidx.test.ext", name = "junit-ktx", version = "1.1.5" }
 hilt-work = { group = "androidx.hilt", name = "hilt-work", version = "1.0.0" }
+volley = { group = "com.android.volley", name = "volley", version = "1.2.1" }
 
 [plugins]
 android-application = {id = "com.android.application", version.ref = "gradle"}

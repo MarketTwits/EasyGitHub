@@ -1,4 +1,3 @@
-@Suppress("DSL_SCOPE_VIOLATION") // TODO: Remove once KTIJ-19369 is fixed
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
@@ -41,8 +40,14 @@ dependencies {
     implementation(project(":cloud-datasoruce"))
     implementation(project(":auth"))
     implementation(libs.junit.ktx)
+    implementation(libs.volley)
     testImplementation("org.testng:testng:6.9.6")
     androidTestImplementation("org.testng:testng:6.9.6")
     ksp(libs.hilt)
     implementation(libs.hilt.android)
+    implementation("io.noties.markwon:core:4.6.2")
+    implementation ("io.noties.markwon:linkify:4.6.2")
+    implementation("io.noties.markwon:image-glide:4.6.2")
+
+
 }

@@ -16,11 +16,15 @@ abstract class BaseRepositoriesViewHolder(view: View) :
     ) : BaseRepositoriesViewHolder(binding.root), RepositoriesUiStateHandle {
         override fun success(
             name: String,
+            owner : String,
             description: String,
             language: String,
             languageColor: String
         ) {
             with(binding) {
+                binding.root.setOnClickListener {
+                    action.onClick(name, owner)
+                }
                 rvElementRepoName.text = name
                 rvElementRepoDescription.text = description
                 rvElementRepoLanguage.let {
@@ -31,7 +35,7 @@ abstract class BaseRepositoriesViewHolder(view: View) :
                     rvElementRepoDescription.visibility = View.GONE
                 else
                     rvElementRepoDescription.visibility = View.VISIBLE
-                    rvElementRepoDescription.text = description
+                    this.rvElementRepoDescription.text = description
             }
 
         }

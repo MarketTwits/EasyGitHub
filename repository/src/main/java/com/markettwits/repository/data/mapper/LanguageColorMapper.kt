@@ -1,14 +1,14 @@
-package com.markettwits.repository.data
+package com.markettwits.repository.data.mapper
 
-import android.util.Log
-import org.intellij.lang.annotations.Language
+import com.markettwits.repository.data.AssetsDataSource
 import org.json.JSONException
 import org.json.JSONObject
 import javax.inject.Inject
 
 interface LanguageColorMapper {
     fun map(language: String) : String
-    class Base @Inject constructor(private val assetsDataSource: AssetsDataSource) : LanguageColorMapper{
+    class Base @Inject constructor(private val assetsDataSource: AssetsDataSource) :
+        LanguageColorMapper {
         override fun map(language: String): String {
             val colorsString: String = assetsDataSource.read()
             val colors = try {
