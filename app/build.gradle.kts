@@ -2,8 +2,7 @@ plugins {
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.android.application)
     alias(libs.plugins.ksp)
-    id("dagger.hilt.android.plugin")
-    id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -28,19 +27,16 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
+    kotlin{
+        jvmToolchain(libs.versions.jvmTarget.get().toInt())
     }
 }
 dependencies {
-    implementation(libs.navigation.fragment)
-    implementation(libs.navigation.ui.ktx)
-    ksp(libs.hilt)
-    implementation(libs.hilt.android)
     implementation(project(":auth"))
     implementation(project(":repository"))
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui.ktx)
+    implementation(libs.hilt.android)
+    ksp(libs.hilt)
+
 }

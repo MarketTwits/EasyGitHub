@@ -29,8 +29,8 @@ class DetailInfoFragment : Fragment(R.layout.fragment_repositories_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val owner = arguments?.getString("ownerName") ?: ""
-        val name = arguments?.getString("repoName") ?: ""
+        val owner = arguments?.getString("owner") ?: ""
+        val name = arguments?.getString("name") ?: ""
         binding.toolbar.setUpToolbar(name,{
             viewModel.signOut()
         },{

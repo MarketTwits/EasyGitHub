@@ -8,19 +8,6 @@ import com.markettwits.repository.di.RepositoryWorkerFactory
 import dagger.hilt.android.HiltAndroidApp
 import javax.inject.Inject
 
-//@HiltAndroidApp
-//class EasyGitHubApplication : Application() {
-//    @Inject
-//    lateinit var workerFactory: RepositoryWorkerFactory
-//
-//    override fun onCreate() {
-//        super.onCreate()
-//        WorkManager.initialize(
-//            this,
-//            Configuration.Builder().setWorkerFactory(workerFactory).build()
-//        )
-//    }
-//}
 @HiltAndroidApp
 class EasyGitHubApplication : Application(), Configuration.Provider {
     @Inject

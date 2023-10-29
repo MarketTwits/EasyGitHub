@@ -22,24 +22,21 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
+    kotlin{
+        jvmToolchain(libs.versions.jvmTarget.get().toInt())
     }
     viewBinding.isEnabled = true
 }
 
 dependencies {
+    implementation(libs.navigation.ui.ktx)
     api(libs.fragment)
     api(libs.core.ktx)
     api(libs.appcompat)
     api(libs.constraintlayout)
     api(libs.material)
-    api(libs.navigation.fragment)
-    api(libs.navigation.ui.ktx)
     testApi(libs.bundles.unitTest)
+    androidTestApi(libs.testng)
+    api(libs.junit.ktx)
     api(libs.core.splashscreen)
 }

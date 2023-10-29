@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
-    id("dagger.hilt.android.plugin")
+    alias(libs.plugins.hilt)
 }
 
 android {
@@ -25,12 +25,8 @@ android {
             )
         }
     }
-    compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
-    }
-    kotlinOptions {
-        jvmTarget = libs.versions.jvmTarget.get()
+    kotlin{
+        jvmToolchain(libs.versions.jvmTarget.get().toInt())
     }
     viewBinding.isEnabled = true
 }
@@ -38,9 +34,7 @@ android {
 dependencies {
     api(project(":core"))
     api(project(":cloud-datasoruce"))
-    ksp(libs.hilt)
     implementation(libs.hilt.android)
-    implementation(libs.junit.ktx)
-    testImplementation("org.testng:testng:6.9.6")
-    implementation ("androidx.security:security-crypto:1.1.0-alpha06")
+    implementation (libs.security.crypto)
+    ksp(libs.hilt)
 }
