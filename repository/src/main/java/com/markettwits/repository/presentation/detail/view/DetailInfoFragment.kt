@@ -30,12 +30,13 @@ class DetailInfoFragment : Fragment(R.layout.fragment_repositories_list) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        //todo handle process death option
         val owner = arguments?.getString("owner") ?: ""
         val name = arguments?.getString("name") ?: ""
-        binding.toolbar.setUpWithBack(name)
         if (savedInstanceState == null){
             viewModel.fetchRepositoryInfo(name, owner)
         }
+        binding.toolbar.setUpWithBack(name)
         viewModel.observeRetry(viewLifecycleOwner){
             viewModel.fetchRepositoryInfo(name, owner)
         }

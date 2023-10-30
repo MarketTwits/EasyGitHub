@@ -1,7 +1,7 @@
 package com.markettwits.repository.data
 
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
-import com.markettwits.cloud_datasoruce.core.AuthDataSource
+import com.markettwits.core.storage.AuthDataSource
 import com.markettwits.repository.data.mapper.CloudToDomainReadmeMapper
 import com.markettwits.repository.data.mapper.CloudToDomainRepositoriesMapper
 import com.markettwits.repository.data.mapper.CloudToDomainRepositoryMapper

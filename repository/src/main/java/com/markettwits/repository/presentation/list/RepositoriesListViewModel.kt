@@ -3,7 +3,6 @@ package com.markettwits.repository.presentation.list
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.markettwits.cloud_datasoruce.core.AuthDataSource
 import com.markettwits.core.communication.Communication
 import com.markettwits.core.navigation.Navigation
 import com.markettwits.core.wrappers.AsyncViewModel

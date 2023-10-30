@@ -2,7 +2,7 @@ plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.ksp)
-    kotlin(libs.plugins.kotlin.serialization.get().pluginId) version libs.versions.kotlin
+    alias(libs.plugins.kotlin.serialization)
 }
 
 android {
@@ -32,8 +32,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    api(libs.work.manager)
-    api(libs.hilt.work)
+    api(libs.bundles.hilt.worker)
     implementation(libs.hilt.android)
     implementation(libs.bundles.network)
     implementation(libs.bundles.retfrofit.serialization)

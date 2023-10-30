@@ -32,8 +32,8 @@ android {
 }
 
 dependencies {
-    api(project(":core"))
-    api(project(":cloud-datasoruce"))
+    implementation(project(":core"))
+    implementation(project(":cloud-datasoruce"))
     implementation(libs.hilt.android)
     implementation (libs.security.crypto)
     ksp(libs.hilt)

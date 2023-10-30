@@ -4,16 +4,14 @@ import android.content.Context
 import com.markettwits.auth.data.AuthRepository
 import com.markettwits.auth.data.CloudToDomainAuthMapper
 import com.markettwits.auth.data.cache.SecureSharedPreferences
-import com.markettwits.auth.di.AuthModule_ProvideRepositoryAuthFactory.provideRepositoryAuth
-import com.markettwits.auth.di.AuthModule_ProvideRepositoryFactory.provideRepository
-import com.markettwits.auth.presentation.communication.AuthCommunication
 import com.markettwits.auth.presentation.AuthUiState
-import com.markettwits.auth.presentation.validation.HandleValidationToken
+import com.markettwits.auth.presentation.communication.AuthCommunication
 import com.markettwits.auth.presentation.communication.ValidationCommunication
+import com.markettwits.auth.presentation.validation.HandleValidationToken
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
-import com.markettwits.cloud_datasoruce.core.AuthDataSource
 import com.markettwits.cloud_datasoruce.di.CloudGitHubDataSource
 import com.markettwits.core.di.AuthQualifier
+import com.markettwits.core.storage.AuthDataSource
 import com.markettwits.core.storage.SharedPreferencesStorage
 import com.markettwits.core.wrappers.AsyncViewModel
 import com.markettwits.core.wrappers.DispatchersList
@@ -91,7 +89,7 @@ class SingleAuthModule{
     @Singleton
     @Provides
     @AuthQualifier
-    fun provideAuthDataSource(@SecureSharedPref cache : SharedPreferencesStorage) : AuthDataSource{
+    fun provideAuthDataSource(@SecureSharedPref cache : SharedPreferencesStorage) : AuthDataSource {
         return AuthRepository.BaseLocal(cache)
     }
     @Provides

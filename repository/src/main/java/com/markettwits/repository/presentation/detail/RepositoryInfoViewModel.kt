@@ -69,8 +69,6 @@ interface RepositoryInfoViewModel{
         private companion object{
             const val DEFAULT_BRANCH = "master"
         }
-
-
     }
 }
 

@@ -32,11 +32,13 @@ android {
     }
 }
 dependencies {
+    implementation(project(":core"))
     implementation(project(":auth"))
     implementation(project(":repository"))
+    implementation(libs.bundles.hilt.worker)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui.ktx)
     implementation(libs.hilt.android)
     ksp(libs.hilt)
-
+    ksp(libs.hilt.compiler)
 }

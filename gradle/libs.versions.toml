@@ -88,7 +88,7 @@ kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 kotlin-jvm = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}
 hilt = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}
-kotlin-serialization =  {id = "plugin.serialization", version.ref = "kotlin"}
+kotlin-serialization =  {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
 
 [bundles]
 
@@ -99,5 +99,6 @@ retfrofit-serialization = ["kotlinx-serialization-core",
     "kotlinx-serialization-json", "jakewharton"]
 unitTest = ["junit", "testng"]
 markwon = ["markwon-core", "markwon-linkify", "markwon-glide"]
+hilt-worker = ["work-manager", "hilt-work"]
 
 

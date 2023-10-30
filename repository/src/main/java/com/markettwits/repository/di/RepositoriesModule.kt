@@ -3,9 +3,9 @@ package com.markettwits.repository.di
 import android.content.Context
 import androidx.work.WorkManager
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
-import com.markettwits.cloud_datasoruce.core.AuthDataSource
 import com.markettwits.cloud_datasoruce.di.CloudGitHubDataSource
 import com.markettwits.core.di.AuthQualifier
+import com.markettwits.core.storage.AuthDataSource
 import com.markettwits.core.wrappers.AsyncViewModel
 import com.markettwits.core.wrappers.DispatchersList
 import com.markettwits.core.wrappers.RunAsync
