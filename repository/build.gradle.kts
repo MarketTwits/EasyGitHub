@@ -33,8 +33,7 @@ android {
 dependencies {
     implementation(project(":core"))
     implementation(project(":cloud-datasoruce"))
-    implementation(project(":auth"))
-    implementation(libs.volley)
+    implementation(project(":menu"))
     implementation(libs.hilt.android)
     implementation(libs.bundles.markwon)
     ksp(libs.hilt)

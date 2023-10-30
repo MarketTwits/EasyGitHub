@@ -34,7 +34,6 @@
                 android:value="androidx_startup"
                 tools:node="remove" />
         </provider>
-
     </application>
 
 

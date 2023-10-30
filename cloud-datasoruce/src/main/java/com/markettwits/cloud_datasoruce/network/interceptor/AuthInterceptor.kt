@@ -1,7 +1,6 @@
 package com.markettwits.cloud_datasoruce.network.interceptor
 
 
-import com.markettwits.cloud_datasoruce.core.UserToken
 import okhttp3.Interceptor
 import okhttp3.Response
 

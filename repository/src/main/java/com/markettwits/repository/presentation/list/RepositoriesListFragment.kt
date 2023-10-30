@@ -47,9 +47,7 @@ class RepositoriesListFragment : Fragment(com.markettwits.repository.R.layout.fr
         viewModel.observe(viewLifecycleOwner){
             adapter.submitList(it)
         }
-        binding.toolbar.setUpToolbar(getString(com.markettwits.core.R.string.repositories)){
-            viewModel.singOut()
-        }
+        binding.toolbar.setUpSingle(getString(com.markettwits.core.R.string.repositories))
     }
 
     override fun onDestroyView() {

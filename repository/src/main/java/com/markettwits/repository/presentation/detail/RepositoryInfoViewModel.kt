@@ -3,9 +3,7 @@ package com.markettwits.repository.presentation.detail
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
-import com.markettwits.auth.data.AuthRepository
 import com.markettwits.core.communication.Communication
-import com.markettwits.core.navigation.Navigation
 import com.markettwits.core.wrappers.AsyncViewModel
 import com.markettwits.repository.domain.RepositoryInteractor
 import com.markettwits.repository.presentation.detail.communication.ReadmeCommunication
@@ -16,8 +14,6 @@ import javax.inject.Inject
 
 
 interface RepositoryInfoViewModel{
-    fun goBack()
-    fun signOut()
     fun retry()
     fun observeRetry(owner: LifecycleOwner, observer: Observer<Unit>)
     fun observeReadme(owner: LifecycleOwner, observer: Observer<RepositoryReadmeUiState>)
@@ -30,26 +26,12 @@ interface RepositoryInfoViewModel{
         private val communication: RepositoryCommunication,
         private val readmeCommunication: ReadmeCommunication,
         private val retryCommunication: RetryCommunication,
-        private val navigation: Navigation,
-        private val authRepository: AuthRepository,
         private val async: AsyncViewModel<RepositoryUiState>
     ) : ViewModel(), Communication.Observe<RepositoryUiState>, RepositoryInfoViewModel {
 
         override fun observe(owner: LifecycleOwner, observer: Observer<RepositoryUiState>) {
             communication.observe(owner, observer)
         }
-
-        override fun goBack() {
-            navigation.back()
-        }
-
-        override fun signOut() {
-            navigation.navigateToAuth()
-            async.handleAsync({
-                authRepository.logOut()
-            }){}
-        }
-
         override fun retry() {
             retryCommunication.map(Unit)
         }
@@ -74,7 +56,7 @@ interface RepositoryInfoViewModel{
         override fun fetchRepositoryReadmeInner(repositoryName: String, owner: String) {
             readmeCommunication.map(RepositoryReadmeUiState.Loading)
             async.handleAsync({
-                interactor.readMe(owner, repositoryName, "master")
+                interactor.readMe(owner, repositoryName, DEFAULT_BRANCH)
             }){
                 readmeCommunication.map(it)
             }
@@ -84,6 +66,11 @@ interface RepositoryInfoViewModel{
             fetchRepositoryInfoInner(repositoryName, owner)
             fetchRepositoryReadmeInner(repositoryName, owner)
         }
+        private companion object{
+            const val DEFAULT_BRANCH = "master"
+        }
+
+
     }
 }
 

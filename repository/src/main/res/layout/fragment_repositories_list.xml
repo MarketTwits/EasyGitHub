@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.markettwits.core.ui.tool_bar.ToolBarView
+    <com.markettwits.menu.ui.ToolBarView
         android:id="@+id/toolbar"
         style="@style/Widget.Toolbar"
         app:layout_constraintEnd_toEndOf="parent"

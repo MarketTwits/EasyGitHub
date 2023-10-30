@@ -10,11 +10,11 @@
         <item name="colorSecondaryVariant">@color/teal_700</item>
         <item name="colorOnSecondary">@color/black</item>
         <!-- Status bar color. -->
-        <item name="android:statusBarColor">@color/gray</item>
+        <item name="android:statusBarColor">@color/status_bar</item>
     </style>
 
     <style name="Splash" parent="Theme.SplashScreen">
-        <item name="windowSplashScreenBackground">@color/gray</item>
+        <item name="windowSplashScreenBackground">@color/background</item>
         <item name="windowSplashScreenAnimatedIcon">@drawable/ic_splash_logo</item>
         <item name="postSplashScreenTheme">@style/Theme.EasyGitHub</item>
     </style>
@@ -37,12 +37,18 @@
         <item name="android:layout_marginEnd">@dimen/fragment_horizontal_margin</item>
         <item name="android:layout_marginTop">@dimen/fragment_vertical_margin</item>
         <item name="android:layout_marginBottom">@dimen/fragment_vertical_margin</item>
+
+
+    </style>
+
+    <style name="RepositoriesActionBar" parent="@android:style/Widget.Holo.Light.ActionBar">
+        <item name="android:background">@color/status_bar</item>
     </style>
 
     <style name="Widget.Toolbar" parent="Widget.AppCompat.Toolbar">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">?attr/actionBarSize</item>
-        <item name="android:background">@color/gray</item>
+        <item name="android:background">@color/status_bar</item>
         <item name="android:elevation">@dimen/elevation</item>
         <item name="android:titleTextAppearance">@style/TextAppearance.Widget.Toolbar.Title</item>
     </style>

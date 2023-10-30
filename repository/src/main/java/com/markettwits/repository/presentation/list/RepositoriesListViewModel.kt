@@ -13,13 +13,10 @@ import javax.inject.Inject
 
 interface RepositoriesListViewModel {
     fun repositories()
-    fun singOut()
     fun toDetail(owner : String, name : String)
-
     @HiltViewModel
     class Base @Inject constructor(
         private val interactor: RepositoryInteractor,
-        private val authRepository : AuthDataSource,
         private val async: AsyncViewModel<List<RepositoriesUiState>>,
         private val communication: RepositoriesCommunication,
         private val navigation: Navigation
@@ -32,13 +29,6 @@ interface RepositoriesListViewModel {
             async.handleAsync({
                 interactor.repositories()
             }) { communication.map(it) }
-        }
-
-        override fun singOut() {
-            navigation.navigateToAuth()
-            async.handleAsync({
-                authRepository.logOut()
-            }){}
         }
 
         override fun toDetail(owner: String, name: String) {

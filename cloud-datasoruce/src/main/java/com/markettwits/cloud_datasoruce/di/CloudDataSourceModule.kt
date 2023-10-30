@@ -36,11 +36,6 @@ internal class CloudDataSourceModule {
      fun provideWithOutTokenClient(): OkHttpClient {
         return OkkHttpWrapper.WithOutToken().client()
     }
-
-    private fun provideWitTokenClient(value: String): OkHttpClient {
-        return OkkHttpWrapper.Base(value).client()
-    }
-
     @Provides
     fun provideJson(): Json {
         return Json {

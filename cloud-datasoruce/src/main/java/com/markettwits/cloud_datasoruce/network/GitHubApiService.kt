@@ -11,9 +11,6 @@ import retrofit2.http.Query
 
 interface GitHubApiService {
     @GET("/user")
-    suspend fun user() : Response<RepositoryCloud.Owner>
-
-    @GET("/user")
     suspend fun auth(
         @Header("Authorization") token : String
     ) : RepositoryCloud.Owner

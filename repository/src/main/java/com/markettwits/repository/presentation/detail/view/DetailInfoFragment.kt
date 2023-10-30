@@ -5,6 +5,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentManager.findFragment
+import androidx.fragment.app.findFragment
 import androidx.fragment.app.viewModels
 import com.markettwits.repository.R
 import com.markettwits.repository.databinding.FragmentDetailInfoBinding
@@ -15,7 +17,6 @@ import dagger.hilt.android.AndroidEntryPoint
 class DetailInfoFragment : Fragment(R.layout.fragment_repositories_list) {
     private var _binding: FragmentDetailInfoBinding? = null
     private val binding get() = _binding!!
-
     private val viewModel by viewModels<RepositoryInfoViewModel.Base>()
 
     override fun onCreateView(
@@ -31,11 +32,7 @@ class DetailInfoFragment : Fragment(R.layout.fragment_repositories_list) {
         super.onViewCreated(view, savedInstanceState)
         val owner = arguments?.getString("owner") ?: ""
         val name = arguments?.getString("name") ?: ""
-        binding.toolbar.setUpToolbar(name,{
-            viewModel.signOut()
-        },{
-            viewModel.goBack()
-        })
+        binding.toolbar.setUpWithBack(name)
         if (savedInstanceState == null){
             viewModel.fetchRepositoryInfo(name, owner)
         }

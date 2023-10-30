@@ -13,6 +13,7 @@ import com.markettwits.auth.presentation.communication.ValidationCommunication
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
 import com.markettwits.cloud_datasoruce.core.AuthDataSource
 import com.markettwits.cloud_datasoruce.di.CloudGitHubDataSource
+import com.markettwits.core.di.AuthQualifier
 import com.markettwits.core.storage.SharedPreferencesStorage
 import com.markettwits.core.wrappers.AsyncViewModel
 import com.markettwits.core.wrappers.DispatchersList
