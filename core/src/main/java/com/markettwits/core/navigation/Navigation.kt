@@ -1,6 +1,5 @@
 package com.markettwits.core.navigation
 
-import androidx.annotation.IntegerRes
 import androidx.annotation.NavigationRes
 import androidx.navigation.NavController
 
@@ -17,4 +16,29 @@ interface Navigation {
     fun navigateToAuth()
     fun navigateToDetail(owner : String, name : String)
     fun back()
+}
+abstract class FakeNavigation : Navigation{
+    private val map: MutableList<String>  = mutableListOf()
+    override fun init(navGraph: Int, startDestination: Int, navHostController: NavController) =Unit
+
+    override fun navigateToRepositoryList() {
+        map.add(REPOSITORY_SCREEN)
+    }
+
+    override fun navigateToAuth() {
+        map.add(AUTH_SCREEN)
+    }
+
+    override fun navigateToDetail(owner: String, name: String) {
+       map.add(DETAIL_SCREEN)
+    }
+    override fun back() {
+       map.removeLast()
+    }
+    companion object{
+        const val REPOSITORY_SCREEN = "repositoryScreen"
+        const val AUTH_SCREEN = "authScreen"
+        const val DETAIL_SCREEN = "detailScreen"
+    }
+    class Base : FakeNavigation()
 }

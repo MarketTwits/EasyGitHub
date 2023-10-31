@@ -32,7 +32,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":cloud-datasoruce"))
+    implementation(project(":cloud-datasource"))
     implementation(project(":menu"))
     implementation(libs.hilt.android)
     implementation(libs.bundles.markwon)

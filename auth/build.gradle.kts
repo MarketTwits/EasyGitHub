@@ -33,7 +33,7 @@ android {
 
 dependencies {
     implementation(project(":core"))
-    implementation(project(":cloud-datasoruce"))
+    implementation(project(":cloud-datasource"))
     implementation(libs.hilt.android)
     implementation (libs.security.crypto)
     ksp(libs.hilt)

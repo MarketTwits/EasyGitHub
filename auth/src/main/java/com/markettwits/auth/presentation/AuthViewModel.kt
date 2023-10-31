@@ -33,10 +33,6 @@ interface AuthViewModel : AuthCommunication.Observe, ValidationCommunication.Obs
         private val navigation: Navigation
     ) : AuthViewModel, ViewModel() {
 
-        init {
-            Log.d("mt055", navigation.hashCode().toString())
-        }
-
         override fun dismiss() {
             communication.map(AuthUiState.Empty)
         }

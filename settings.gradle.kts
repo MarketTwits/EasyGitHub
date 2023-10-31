@@ -18,6 +18,6 @@ rootProject.name = "EasyGitHub"
 include(":app")
 include(":core")
 include(":auth")
-include(":cloud-datasoruce")
+include(":cloud-datasource")
 include(":repository")
 include(":menu")

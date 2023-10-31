@@ -2,10 +2,8 @@ package com.markettwits.auth.data
 
 import com.markettwits.auth.presentation.AuthUiState
 import com.markettwits.cloud_datasoruce.GitHubCloudDataSource
-
 import com.markettwits.core.storage.AuthDataSource
 import com.markettwits.core.storage.SharedPreferencesStorage
-import javax.inject.Inject
 
 interface AuthRepository : AuthDataSource {
 
