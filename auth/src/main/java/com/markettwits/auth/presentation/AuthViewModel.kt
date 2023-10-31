@@ -1,6 +1,5 @@
 package com.markettwits.auth.presentation
 
-import android.util.Log
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
@@ -29,18 +28,18 @@ interface AuthViewModel : AuthCommunication.Observe, ValidationCommunication.Obs
         private val async: AsyncViewModel<AuthUiState>,
         private val handleValidationToken: HandleValidationToken,
         private val tokenCommunication: ValidationCommunication,
-        private val communication: AuthCommunication,
+        private val authCommunication: AuthCommunication,
         private val navigation: Navigation
     ) : AuthViewModel, ViewModel() {
 
         override fun dismiss() {
-            communication.map(AuthUiState.Empty)
+            authCommunication.map(AuthUiState.Empty)
         }
 
         override fun signIn(token: String) {
-            communication.map(AuthUiState.Loading)
+            authCommunication.map(AuthUiState.Loading)
             async.handleAsync({ repository.auth(token) }) {
-                communication.map(it)
+                authCommunication.map(it)
             }
         }
 
@@ -74,7 +73,7 @@ interface AuthViewModel : AuthCommunication.Observe, ValidationCommunication.Obs
         }
 
         override fun observeAuth(owner: LifecycleOwner, observer: Observer<AuthUiState>) {
-            communication.observe(owner, observer)
+            authCommunication.observe(owner, observer)
         }
     }
 }

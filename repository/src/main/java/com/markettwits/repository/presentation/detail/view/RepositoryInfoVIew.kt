@@ -3,6 +3,7 @@ package com.markettwits.repository.presentation.detail.view
 import android.content.Context
 import android.content.Intent
 import android.net.Uri
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -13,6 +14,7 @@ import com.markettwits.repository.databinding.LayoutErrorBinding
 import com.markettwits.repository.databinding.LayoutLoadingBinding
 import com.markettwits.repository.databinding.LayoutRepositoryDetailInfoBinding
 import com.markettwits.repository.presentation.detail.RepositoryInfoViewModel
+import com.markettwits.repository.presentation.detail.RepositoryUiState
 import com.markettwits.repository.presentation.detail.RepositoryUiStateHandle
 
 class RepositoryInfoVIew @JvmOverloads constructor(

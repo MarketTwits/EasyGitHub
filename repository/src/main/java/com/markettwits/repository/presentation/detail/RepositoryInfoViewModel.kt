@@ -5,6 +5,7 @@ import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModel
 import com.markettwits.core.communication.Communication
 import com.markettwits.core.wrappers.AsyncViewModel
+import com.markettwits.core.wrappers.HandleDeath
 import com.markettwits.repository.domain.RepositoryInteractor
 import com.markettwits.repository.presentation.detail.communication.ReadmeCommunication
 import com.markettwits.repository.presentation.detail.communication.RepositoryCommunication
@@ -14,6 +15,11 @@ import javax.inject.Inject
 
 
 interface RepositoryInfoViewModel{
+    fun restore(state: RepositoryUiState)
+    fun restoreReadme(state: RepositoryReadmeUiState)
+    fun currentState() : RepositoryUiState
+    fun currentReadmeState() : RepositoryReadmeUiState
+    fun init(firstRun : Boolean,repositoryName: String, owner: String)
     fun retry()
     fun observeRetry(owner: LifecycleOwner, observer: Observer<Unit>)
     fun observeReadme(owner: LifecycleOwner, observer: Observer<RepositoryReadmeUiState>)
@@ -26,12 +32,34 @@ interface RepositoryInfoViewModel{
         private val communication: RepositoryCommunication,
         private val readmeCommunication: ReadmeCommunication,
         private val retryCommunication: RetryCommunication,
-        private val async: AsyncViewModel<RepositoryUiState>
+        private val async: AsyncViewModel<RepositoryUiState>,
+        private val handleDeath: HandleDeath
     ) : ViewModel(), Communication.Observe<RepositoryUiState>, RepositoryInfoViewModel {
 
         override fun observe(owner: LifecycleOwner, observer: Observer<RepositoryUiState>) {
             communication.observe(owner, observer)
         }
+
+        override fun restore(state: RepositoryUiState) {
+            if (communication.fetch() == null){
+                communication.map(state)
+            }
+        }
+
+        override fun restoreReadme(state: RepositoryReadmeUiState) {
+            if (readmeCommunication.fetch() == null){
+                readmeCommunication.map(state)
+            }
+        }
+        override fun currentState() = communication.fetch() ?: RepositoryUiState.Loading
+        override fun currentReadmeState() = readmeCommunication.fetch() ?: RepositoryReadmeUiState.Loading
+        override fun init(firstRun: Boolean,repositoryName: String, owner: String) {
+            if (firstRun){
+                handleDeath.firstOpening()
+                fetchRepositoryInfo(repositoryName, owner)
+            }
+        }
+
         override fun retry() {
             retryCommunication.map(Unit)
         }
@@ -63,8 +91,8 @@ interface RepositoryInfoViewModel{
         }
 
         override fun fetchRepositoryInfo(repositoryName: String, owner: String) {
-            fetchRepositoryInfoInner(repositoryName, owner)
-            fetchRepositoryReadmeInner(repositoryName, owner)
+                fetchRepositoryInfoInner(repositoryName, owner)
+                fetchRepositoryReadmeInner(repositoryName, owner)
         }
         private companion object{
             const val DEFAULT_BRANCH = "master"

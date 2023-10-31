@@ -8,6 +8,7 @@ import com.markettwits.core.di.AuthQualifier
 import com.markettwits.core.storage.AuthDataSource
 import com.markettwits.core.wrappers.AsyncViewModel
 import com.markettwits.core.wrappers.DispatchersList
+import com.markettwits.core.wrappers.HandleDeath
 import com.markettwits.core.wrappers.RunAsync
 import com.markettwits.repository.data.AssetsDataSource
 import com.markettwits.repository.data.ForegroundServiceWrapper
@@ -84,6 +85,10 @@ class RepositoriesModule {
     @Provides
     fun provideCommunicationSingle() : RepositoryCommunication {
         return RepositoryCommunication.Base()
+    }
+    @Provides
+    fun provideHandleDeath() : HandleDeath{
+        return HandleDeath.Base()
     }
     @Provides
     fun provideReadmeCommunication() : ReadmeCommunication = ReadmeCommunication.Base()

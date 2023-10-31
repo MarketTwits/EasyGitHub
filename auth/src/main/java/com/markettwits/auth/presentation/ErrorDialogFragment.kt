@@ -21,12 +21,10 @@ internal class ErrorDialogFragment(
         AlertDialog.Builder(requireContext())
             .setTitle(getString(R.string.something_error_label))
             .setMessage(requireContext().getString(message))
-            .setPositiveButton("ok") { _, _ -> }
+            .setPositiveButton("ok") { _, _ ->
+                viewModel.dismiss()
+            }
             .create()
-
-    companion object {
-        const val TAG = "ErrorDialogFragment"
-    }
 
     override fun onPause() {
         super.onPause()
@@ -36,5 +34,9 @@ internal class ErrorDialogFragment(
     override fun onCancel(dialog: DialogInterface) {
         super.onCancel(dialog)
         viewModel.dismiss()
+    }
+
+    companion object {
+        const val TAG = "ErrorDialogFragment"
     }
 }
