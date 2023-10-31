@@ -1,25 +1,38 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
+    android:layout_alignParentBottom="true">
 
-    <com.markettwits.menu.ui.ToolBarView
-        android:id="@+id/toolbar"
-        style="@style/Widget.Toolbar" />
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appBarLayouts"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/transparent"
+        android:outlineProvider="none"
+        tools:ignore="MissingConstraints">
 
-    <ScrollView
+        <com.markettwits.menu.ui.ToolBarView
+            android:id="@+id/toolbar"
+            style="@style/Widget.Toolbar"
+            app:layout_scrollFlags="scroll|enterAlways|snap" />
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/content"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center_horizontal"
-        android:fillViewport="true">
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.markettwits.repository.presentation.detail.view.RepositoryInfoVIew
             android:id="@+id/repositoryInfo"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:layout_behavior="@string/appbar_scrolling_view_behavior" />
 
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
-</LinearLayout>
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

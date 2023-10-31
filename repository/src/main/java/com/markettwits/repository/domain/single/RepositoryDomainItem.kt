@@ -8,7 +8,7 @@ sealed interface RepositoryDomainItem {
         val id: Int,
         val name: String,
         val htmlUrl: String,
-        val license: Any,
+        val license: String,
         val forks: Int = 0,
         val stars: Int = 0,
         val watchers: Int = 0,

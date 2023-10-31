@@ -12,7 +12,7 @@ data class RepositoryCloud(
     val htmlUrl: String,
     val description: String? = null,
     val language: String? = null,
-    val license: License? = null,
+    val license: License? = License(""),
     @SerialName("forks_count")
     val forks: Int = 0,
     @SerialName("stargazers_count")

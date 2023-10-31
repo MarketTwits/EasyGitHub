@@ -10,13 +10,15 @@ class CloudToDomainRepositoryMapper : NetworkResult.Mapper<RepositoryCloud, Repo
             id = item.id,
             name = item.name,
             htmlUrl = item.htmlUrl,
-            license = item.license ?: RepositoryCloud.License("").name,
+            license = mapLicence(item.license),
             forks = item.forks,
             stars = item.stars,
             watchers = item.watchers,
         )
     }
-
+    fun mapLicence(license: RepositoryCloud.License?) : String{
+        return license?.name ?: RepositoryCloud.License("").name
+    }
     override fun map(errorMessage: Int, code: Int): RepositoryDomainItem {
         return RepositoryDomainItem.Error(errorMessage, code)
     }
