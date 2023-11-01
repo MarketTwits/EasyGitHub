@@ -1,3 +1,5 @@
+# EasyGitGub
+
 ### Functional requirements
 
 1. User authorization (personal access token)
@@ -33,10 +35,16 @@
 
 ### Application graph
 
-//set image
-
+![](./image/graph.png)
 ### Developer's Note
-
 The chronology of the development of the test project is available by branch numbers. Branches related to this application start with GB"id"/feature/"feauture-name". The application was developed with the condition that it would be covered with the maximum number of tests if necessary, for this you just need to write fakes for data sources.
+
+### Application Image
+<p float="left">
+ <img src="./image/sign_in.png" width="300" />
+ <img src="./image/repository_list.png" width="300" />
+ <img src="./image/repository_detail.png" width="300" />
+</p>
+
 
 
