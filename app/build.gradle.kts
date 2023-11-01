@@ -31,6 +31,7 @@ android {
         jvmToolchain(libs.versions.jvmTarget.get().toInt())
     }
 }
+
 dependencies {
     implementation(project(":core"))
     implementation(project(":auth"))
