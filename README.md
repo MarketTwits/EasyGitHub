@@ -41,9 +41,9 @@ The chronology of the development of the test project is available by branch num
 
 ### Application Image
 <p float="left">
- <img src="./image/sign_in.png" width="300" />
- <img src="./image/repository_list.png" width="300" />
- <img src="./image/repository_detail.png" width="300" />
+ <img src="./image/sign_in.png" width="250" />
+ <img src="./image/repository_list.png" width="250" />
+ <img src="./image/repository_detail.png" width="250" />
 </p>
 
 
