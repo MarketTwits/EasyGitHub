@@ -1,8 +1,12 @@
 package com.markettwits.repository.presentation.list
 
-sealed interface RepositoriesUiState {
-    fun show(show: RepositoriesUiStateHandle)
+import android.os.Parcelable
+import kotlinx.parcelize.Parcelize
 
+@Parcelize
+sealed interface RepositoriesUiState : Parcelable {
+    fun show(show: RepositoriesUiStateHandle)
+    @Parcelize
     class Success(
         private val name: String,
         private val owner : String,
@@ -15,14 +19,14 @@ sealed interface RepositoriesUiState {
             show.success(name, owner,description, language, languageColor)
         }
     }
-
+    @Parcelize
     class Error(private val icon: Int, private val title: Int, private val message: Int) :
         RepositoriesUiState {
         override fun show(show: RepositoriesUiStateHandle) {
             show.error(icon, title, message)
         }
     }
-
+    @Parcelize
     class Loading : RepositoriesUiState {
         override fun show(show: RepositoriesUiStateHandle) {
             show.loading()

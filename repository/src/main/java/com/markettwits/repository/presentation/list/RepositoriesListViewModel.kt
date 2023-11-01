@@ -12,7 +12,8 @@ import javax.inject.Inject
 
 interface RepositoriesListViewModel {
     fun repositories()
-    fun toDetail(owner : String, name : String)
+    fun toDetail(owner: String, name: String)
+
     @HiltViewModel
     class Base @Inject constructor(
         private val interactor: RepositoryInteractor,
@@ -21,8 +22,9 @@ interface RepositoriesListViewModel {
         private val navigation: Navigation
     ) : ViewModel(), RepositoriesListViewModel, Communication.Observe<List<RepositoriesUiState>> {
         init {
-           repositories()
+            repositories()
         }
+
         override fun repositories() {
             communication.map(listOf(RepositoriesUiState.Loading()))
             async.handleAsync({

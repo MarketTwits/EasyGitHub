@@ -15,10 +15,10 @@ interface MarkwonConfig {
     abstract class Abstract(private val context: Context) : MarkwonConfig{
         protected fun image() : GlideImagesPlugin{
             val glide = object : GlideImagesPlugin.GlideStore {
-                override fun load(drawable: AsyncDrawable): RequestBuilder<Drawable> {
-                    return Glide.with(context)
+                override fun load(drawable: AsyncDrawable): RequestBuilder<Drawable> =
+                     Glide.with(context)
                         .load(drawable.destination)
-                }
+
                 override fun cancel(target: Target<*>) {
                     Glide.with(context).clear(target);
                 }

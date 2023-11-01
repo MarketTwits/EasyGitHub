@@ -17,7 +17,7 @@ import com.markettwits.repository.presentation.list.recyclerView.RepositoriesAda
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class RepositoriesListFragment : Fragment(com.markettwits.repository.R.layout.fragment_repositories_list) {
+class RepositoriesListFragment : Fragment(R.layout.fragment_repositories_list) {
     private var _binding: FragmentRepositoriesListBinding? = null
     private val binding get() = _binding!!
     private val viewModel by viewModels<RepositoriesListViewModel.Base>()
@@ -34,7 +34,7 @@ class RepositoriesListFragment : Fragment(com.markettwits.repository.R.layout.fr
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val adapter = RepositoriesAdapter(object : ItemAction {
+        val adapter = RepositoriesAdapter( object : ItemAction {
             override fun onClick(name: String, owner: String) {
                 viewModel.toDetail(owner, name)
             }
@@ -54,6 +54,12 @@ class RepositoriesListFragment : Fragment(com.markettwits.repository.R.layout.fr
         super.onDestroyView()
         binding.rvRepositoriesList.adapter = null
         _binding = null
+    }
+
+    override fun onSaveInstanceState(outState: Bundle) {
+        val bundle = Bundle()
+        super.onSaveInstanceState(outState)
+
     }
 
 }
