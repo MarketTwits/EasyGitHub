@@ -42,6 +42,6 @@ interface GitHubApiService {
          const val NO_RIGHTS_CODE = 403
          const val NOT_FOUND_CODE = 404
          const val NO_INTERNET_CODE = 499
-         const val REPOSITORIES_AMOUNT = 30
+         const val REPOSITORIES_AMOUNT = 10
     }
 }
