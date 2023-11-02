@@ -34,7 +34,7 @@ okkhttp = "4.11.0"
 work-manager = "2.8.1"
 #DI
 hilt = "2.47"
-ksp = "1.9.0-1.0.12"
+ksp = "1.9.10-1.0.13"
 hilt-compiler = "1.1.0-alpha01"
 
 #Serialization
@@ -91,6 +91,7 @@ kotlin-jvm = {id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin"}
 ksp = {id = "com.google.devtools.ksp", version.ref = "ksp"}
 hilt = {id = "com.google.dagger.hilt.android", version.ref = "hilt"}
 kotlin-serialization =  {id = "org.jetbrains.kotlin.plugin.serialization", version.ref = "kotlin"}
+kotlin-parcelize = {id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "kotlin"}
 
 [bundles]
 

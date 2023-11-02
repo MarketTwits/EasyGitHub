@@ -12,6 +12,8 @@ import javax.inject.Inject
 
 interface RepositoriesListViewModel {
     fun repositories()
+    fun save() : List<RepositoriesUiState>
+    fun restore(state : List<RepositoriesUiState>)
     fun toDetail(owner: String, name: String)
 
     @HiltViewModel
@@ -30,6 +32,13 @@ interface RepositoriesListViewModel {
             async.handleAsync({
                 interactor.repositories()
             }) { communication.map(it) }
+        }
+
+        override fun save() = communication.fetch() ?: listOf(RepositoriesUiState.Loading())
+
+
+        override fun restore(state: List<RepositoriesUiState>) {
+            communication.map(state)
         }
 
         override fun toDetail(owner: String, name: String) {

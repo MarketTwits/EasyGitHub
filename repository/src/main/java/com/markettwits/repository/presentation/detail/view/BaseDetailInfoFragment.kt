@@ -1,12 +1,12 @@
 package com.markettwits.repository.presentation.detail.view
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
+import com.markettwits.core.ui.save_and_restore.parcelable
 import com.markettwits.repository.databinding.FragmentDetailInfoBinding
 import com.markettwits.repository.presentation.detail.RepositoryInfoViewModel
 import com.markettwits.repository.presentation.detail.RepositoryReadmeUiState
@@ -29,27 +29,24 @@ abstract class BaseDetailInfoFragment(private val layoutResId : Int) : Fragment(
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
-            val state = savedInstanceState?.getParcelable("ui-state", RepositoryUiState::class.java)
-            val readmeState = savedInstanceState?.getParcelable("readme-state", RepositoryReadmeUiState::class.java)
-            viewModel.restore(state ?: RepositoryUiState.Loading)
-            viewModel.restoreReadme(readmeState ?: RepositoryReadmeUiState.Loading)
-        }else{
-            val state = savedInstanceState?.getParcelable<RepositoryUiState>("ui-state")
-            val readmeState = savedInstanceState?.getParcelable<RepositoryReadmeUiState>("readme-state")
-            viewModel.restore(state ?: RepositoryUiState.Loading)
-            viewModel.restoreReadme(readmeState ?: RepositoryReadmeUiState.Loading)
-        }
+        val state = savedInstanceState?.parcelable<RepositoryUiState>(REPOSITORY_UI_STATE_KEY)
+        val readmeState = savedInstanceState?.parcelable<RepositoryReadmeUiState>(REPOSITORY_README_STATE_KEY)
+        viewModel.restore(state ?: RepositoryUiState.Loading)
+        viewModel.restoreReadme(readmeState ?: RepositoryReadmeUiState.Loading)
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
         super.onSaveInstanceState(outState)
-        outState.putParcelable("ui-state", viewModel.currentState())
-        outState.putParcelable("readme-state", viewModel.currentReadmeState())
+        outState.putParcelable(REPOSITORY_UI_STATE_KEY, viewModel.currentState())
+        outState.putParcelable(REPOSITORY_README_STATE_KEY, viewModel.currentReadmeState())
     }
 
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+    private companion object{
+        const val REPOSITORY_UI_STATE_KEY = "ui-state"
+        const val REPOSITORY_README_STATE_KEY = "readme-state"
     }
 }
